@@ -1,5 +1,5 @@
 請先安裝docker
-更改IP
+開啟文件更改IP
 
 在運行docker-compose .yaml
 
