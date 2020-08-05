@@ -1,0 +1,5 @@
+1.[SQL Server 組態管理員]>[SQL Server 網路組態]>[TCP/IP]>設定TCP通訊埠。開啟TCP/IP
+2.右鍵TCP/IP [內容]>[IP位址]>TCP通訊阜更改為1433 *最下面IPALL要改到!!
+3.Windows 防火牆中開啟1433通訊埠供TCP存取
+4.搜尋服務 打開後找到SQL Server Browser服務，按右鍵選內容>啟動類型[自動]
+5.打開SSMS登入後右鍵資料庫[屬性]>[連線]>[允許此伺服器的遠端連線]

@@ -1,0 +1,68 @@
+載點
+Java SE:https://www.oracle.com/java/technologies/javase-jre8-downloads.html
+zookeeper:https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
+kafka:http://kafka.apache.org/downloads.html
+
+三：安裝和配置
+<1>安裝配置Zookeeper
+（1）使用kafka內帶的zookeeper
+在解壓的目錄下新增data目錄，進入E:\demo\kafka_2.12-1.1.1\config，開啟zookeeper.properties，修改為下面並儲存
+dataDir=/kafka_2.12-1.1.1/data
+#接下來命令列進入目錄：E:\demo\kafka_2.12-1.1.1，執行下面的指令碼來開啟zookeeper：
+************************************************************************
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+************************************************************************
+成功會出現下面的介面：
+
+
+#用下面的命令來停止zookeeper服務：
+************************************************************************
+.\bin\windows\zookeeper-server-stop.bat .\config\zookeeper.properties
+************************************************************************
+
+
+（2）使用單獨的zookeeper
+選擇地址下載後，解壓，和kafka一樣，解壓目錄不要有中文和空格。我的目錄為：E:\demo\zookeeper-3.4.13
+進入目錄E:\demo\zookeeper-3.4.13\conf，複製一份zoo_sample.cfg並重命名為zoo.cfg
+編輯dataDir=/zookeeper-3.4.13/data
+新增環境變數：
+ZOOKEEPER_HOME      E:\demo\zookeeper-3.4.13
+PATH現有值後面新增 ;%ZOOKEEPER_HOME%/bin;
+
+命令列E:\demo\zookeeper-3.4.13\bin，執行命令：zkServer
+
+<2>配置kafka
+#(1) 啟動kafka的通訊伺服器broker
+進入目錄E:\demo\kafka_2.12-1.1.1\config，修改檔案server.properties。木有目錄新建目錄
+
+log.dirs=/kafka_2.12-1.1.1/logs
+命令列進入目錄E:\demo\kafka_2.12-1.1.1，執行下面的命令：
+************************************************************************
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+************************************************************************
+最後出現下面的結果就是成功啟動啦：（保持介面，不要關閉）
+
+#(2) 建立一個主題topic
+命令列進入目錄：E:\demo\kafka_2.12-1.1.1\bin\windows，執行下面的命令：
+************************************************************************************************************
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic testTopic
+***********************************************************************************************************
+出現下面的介面就是建立成功，其中testTopic就是我們建立的topic，後面會使用到。命令列就可以關閉了。
+
+#(3) 建立一個生產者producer
+命令列進入目錄：E:\demo\kafka_2.12-1.1.1\bin\windows，執行下面的命令：localhost:9092是我們kafka服務broker的地址，testTopic就是我們上面建立的topic，這個命令就是用來在testTopic下生產一條訊息。
+************************************************************************
+kafka-console-producer.bat --broker-list localhost:9092 --topic testTopic
+************************************************************************
+回車後，會出現下面的輸入框，這裡是生產了一條訊息“hello, kafka”，想要繼續生產訊息可以回車輸入下一條就好。
+
+#(4) 建立一個消費者consumer
+命令列進入目錄：E:\demo\kafka_2.12-1.1.1\bin\windows，執行下面的命令。其中 localhost:2181是我們zookeeper的地址， testTopic是我們要消費的主體。生產者連線kafka服務broker， 消費者連線zookeeper服務。
+************************************************************************************************
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic testTopic --from-beginning
+************************************************************************************************
+回車後，兩邊命令列沒關閉的情況下，在生產者那新增的訊息，消費者這邊就會實時消費展示。這個時候我們開啟狀態的命令列視窗有四個（zookeeper 、broker 、producer 、consumer）
+
+
+
+

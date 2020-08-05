@@ -1,0 +1,44 @@
+Azure VM Windows10 需使用 A.Enterprise version(企業版本)B.標準D2sv3以上
+
+請先安裝docker
+
+步驟一 下載 https://github.com/wurstmeister/kafka-docker
+步驟二 解壓後打開docker-compose.yml 更改裡面映射Port與KAFKA_ADVERTISED_HOST_NAME
+步驟三 運行 docker-compose up -d
+
+/*********************/
+新方法
+
+可以直接運行kafka docker-compose .yaml
+直接拉取image以及設定遠程問訪
+/*********************/
+
+
+可以使用 "docker exec -it [container id] sh" 進入kafka
+kafka 目錄 cd /opt/kafka_2.12-2.5.0/bin/
+
+指令可以參考kafka on linux
+https://tecadmin.net/install-apache-kafka-ubuntu/
+
+
+開啟遠程問訪
+參考https://www.itread01.com/content/1549463237.html
+https://blog.csdn.net/a_drjiaoda/article/details/84635914
+**********************************************************************************************
+把31行的註釋去掉，listeners=PLAINTEXT://:9092
+把36行的註釋去掉，把advertised.listeners值改為PLAINTEXT://host_ip:9092（我的伺服器ip是192.1683.45）
+把123行zookeeper.connect = localhost:2181  localhost改成遠端IP(EX.123.12.1.3 or domain name)
+
+**********************************************************************************************
+常用指令
+查看topic
+./bin/kafka-topics.sh --list --zookeeper zookeeper:2181
+新增topic
+./bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic testTopic
+刪除topic
+./bin/kafka-topics.sh --delete --zookeeper zookeeper:2181 --topic Topic_Name
+
+producer
+./bin/kafka-console-producer.sh --broker-list kafka:9092 --topic Topic_Name
+consumer
+./bin/kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic testTopic --from-beginning
