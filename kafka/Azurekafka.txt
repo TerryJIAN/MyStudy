@@ -1,0 +1,12 @@
+1.image
+wurstmeister/zookeeper
+
+wurstmeister/kafka
+
+2.設定kafka環境變數
+
+KAFKA_ZOOKEEPER_CONNECT utmzookeeper.eastus2.azurecontainer.io:2181
+KAFKA_LISTENERS PLAINTEXT://:9092
+KAFKA_ADVERTISED_LISTENERS PLAINTEXT://utmkafka.eastus2.azurecontainer.io:9092
+KAFKA_ADVERTISED_HOST_NAME utmkafka.eastus2.azurecontainer.io
+KAFKA_CREATE_TOPICS testTopic
