@@ -8,6 +8,6 @@ producer = KafkaProducer(bootstrap_servers=['192.168.105.49:9092'],
                          dumps(x).encode('utf-8'))
 
 for e in data:
-    data = {'test' : e}
+    data = {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) : e}
     producer.send('testTopic', value=data)
     sleep(0.5)
