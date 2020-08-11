@@ -25,6 +25,7 @@ consumer
 ./bin/kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic testTopic --from-beginning
 
 **環境變數設定**
+
 //自動創建Topic
 KAFKA_CREATE_TOPICS: testTopic
 
