@@ -27,7 +27,9 @@ consumer
 **環境變數設定**
 //自動創建Topic
 KAFKA_CREATE_TOPICS: testTopic
+
 //使用該參數將無法透過clinet端創建topic 也會使KAFKA_CREATE_TOPICS無效
 KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false' 
+
 //刪除Topic功能開啟
 KAFKA_DELETE_TOPIC_ENABLE: 'true'
