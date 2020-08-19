@@ -1,9 +1,0 @@
-version: '3.4'
-services:
-  sqldata:
-    image: microsoft/mssql-server-windows-express:latest
-    environment:
-      - SA_PASSWORD=P@ssw0rd
-      - ACCEPT_EULA=Y
-    ports:
-      - "2433:1433"
