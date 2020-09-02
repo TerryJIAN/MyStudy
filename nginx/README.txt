@@ -2,6 +2,8 @@
 例如    
 volumes:
   - ./conf.d:/etc/nginx/conf.d
+  
+  
 2.XXX.conf設定reverse proxy
 *******************************XXX.conf*************************************
 server {
@@ -19,7 +21,5 @@ server {
         proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
         proxy_set_header   X-Forwarded-Proto $scheme;    
        }
-	
- 
 }
 *****************************************************************************
