@@ -1,0 +1,16 @@
+#MSSQL 2016
+version: '3.4'
+services:
+  nginx:
+    image: nginx
+    volumes:
+    - ./conf.d:/etc/nginx/conf.d
+    ports:
+    - "80:80"     
+  myapp:
+    image: myapp.latest:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development  #開啟開發模式
+#    volumes:
+#       - .\code:C:\app
+
