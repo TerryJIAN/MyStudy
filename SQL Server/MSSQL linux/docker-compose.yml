@@ -1,0 +1,33 @@
+#apt-get update && apt-get install -y iputils-ping
+#apt-get install xinetd telnetd
+#MSSQL 2019
+version: '3.4'
+services:
+  nginx:
+    image: nginx
+    volumes:
+    - ./conf.d:/etc/nginx/conf.d
+    ports:
+    - "80:80" 
+  sql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=p@ssw0rd
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+    ports:
+      - "3433:1433"
+    volumes: #掛載資料夾 Host:container:rw *rw 可讀可寫 *ro僅限讀取
+      - ./data:/data
+  dotnetcoresqldb:
+    image: dotnetcoresqldb:latest
+#    ports:
+#      - "8088:80"
+#      - "8089:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development           
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=p@ssw0rd
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ./HTTPS:/https:ro
