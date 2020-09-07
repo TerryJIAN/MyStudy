@@ -1,0 +1,22 @@
+#MSSQL 2016
+version: '3.4'
+services:  
+  sql:
+    image: microsoft/mssql-server-windows-express:latest
+    environment:
+      - SA_PASSWORD=p@ssw0rd
+      - ACCEPT_EULA=Y
+      - attach_dbs=[{"dbName":"MySQl","dbFiles":["c:\\data\\mysql.mdf","c:\\data\\mysql.ldf"]}]
+    ports:
+      - "4433:1433"
+    volumes: #掛載資料夾 Host:container:rw *rw 可讀可寫 *ro僅限讀取
+      - .\data:C:\data\
+  dotnetcoresqldb:
+    image: dotnetcoresqldb:latest
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development  #開啟開發模式
+#    volumes:
+#       - .\code:C:\app
+
