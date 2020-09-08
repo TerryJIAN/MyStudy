@@ -1,8 +1,9 @@
 1.image
 wurstmeister/zookeeper
 
-wurstmeister/kafka
+wurstmeister/kafka:2.12-2.2.1
 
+kafka可以換版本
 2.設定kafka環境變數
 
 KAFKA_ZOOKEEPER_CONNECT terryzookeeper.eastus.azurecontainer.io:2181
@@ -13,13 +14,13 @@ KAFKA_AUTO_CREATE_TOPICS_ENABLE false
 KAFKA_DELETE_TOPIC_ENABLE true
 
 CMD
-/opt/kafka_2.13-2.6.0/bin/kafka-topics.sh --create --zookeeper terryzookeeper.eastus.azurecontainer.io:2181 --replication-factor 1 --partitions 1 --topic testTopic
-/opt/kafka_2.13-2.6.0/bin/kafka-topics.sh --list --zookeeper terryzookeeper.eastus.azurecontainer.io:2181
+/opt/kafka_2.12-2.2.1/bin/kafka-topics.sh --create --zookeeper terryzookeeper.eastus.azurecontainer.io:2181 --replication-factor 1 --partitions 1 --topic testTopic
+/opt/kafka_2.12-2.2.1/bin/kafka-topics.sh --list --zookeeper terryzookeeper.eastus.azurecontainer.io:2181
 
-/opt/kafka_2.13-2.6.0/bin/kafka-console-producer.sh --broker-list terrykafka.eastus.azurecontainer.io:9092 --topic testTopic
-/opt/kafka_2.13-2.6.0/bin/kafka-console-consumer.sh --bootstrap-server terrykafka.eastus.azurecontainer.io:9092 --topic testTopic --from-beginning
+/opt/kafka_2.12-2.2.1/bin/kafka-console-producer.sh --broker-list terrykafka.eastus.azurecontainer.io:9092 --topic testTopic
+/opt/kafka_2.12-2.2.1/bin/kafka-console-consumer.sh --bootstrap-server terrykafka.eastus.azurecontainer.io:9092 --topic testTopic --from-beginning
 
-/opt/kafka_2.13-2.6.0/bin/kafka-topics.sh --delete --zookeeper terryzookeeper.eastus.azurecontainer.io:2181 --topic testTopic
+/opt/kafka_2.12-2.2.1/bin/kafka-topics.sh --delete --zookeeper terryzookeeper.eastus.azurecontainer.io:2181 --topic testTopic
 
 
 如果要重啟或刪除Topic 
