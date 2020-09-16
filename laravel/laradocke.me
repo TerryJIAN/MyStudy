@@ -1,0 +1,5 @@
+0.把專laradock丟掉laravel專案中
+1.建立好 Laradock 所需的.env，把範例檔案中env-example 更改或是複製一份 檔名為.env
+2.轉到./laradock/.env並蒐索，APACHE_DOCUMENT_ROOT然後將該行編輯為：(309行)APACHE_DOCUMENT_ROOT=/var/www/public
+
+運行指令docker-compose up -d apache2 mysql [看你需要增加]
