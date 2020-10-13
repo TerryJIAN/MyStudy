@@ -17,11 +17,18 @@ f = open("/home/senaoadmin01/terry/listfile.txt", "r")
 
 #print (f.read().splitlines())
 
-lines = f.read().splitlines() #去除/n 回傳list
+lines = f.read().splitlines()  #去除/n 回傳list
 #print lines
 for line in lines:
         line=line.split(',') #以','切割list
+        dir='/home/senaoadmin01/terry/'+line[0]
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+        else:
+            pass
+
         print line[0]
         print line[1]
 f.close()
+
 --------------------------------------
