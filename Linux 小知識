@@ -1,0 +1,7 @@
+系統排程crontab 命令
+crontab -l 查看目前使用者執行指令
+crontab -e 編輯
+crontab -r 刪除目前使用者執行指令
+
+*重要*所有路徑需使用絕對路徑
+查看cron誌中/var/log/syslog
