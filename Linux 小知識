@@ -32,3 +32,9 @@ for line in lines:
 f.close()
 
 --------------------------------------
+#* * * * * /usr/bin/python /home/senaoadmin01/terry/task.py
+#* * * * * sleep 10; /usr/bin/python /home/senaoadmin01/terry/task.py
+#* * * * * sleep 20; /usr/bin/python /home/senaoadmin01/terry/task.py
+#* * * * * sleep 30; /usr/bin/python /home/senaoadmin01/terry/task.py
+#* * * * * sleep 40; /usr/bin/python /home/senaoadmin01/terry/task.py
+#* * * * * sleep 50; /usr/bin/python /home/senaoadmin01/terry/task.py
