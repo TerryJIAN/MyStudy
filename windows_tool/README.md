@@ -30,9 +30,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\啟動
 -----IIS 指令創建站點-----
 
 加入:
-
 %systemroot%\system32\inetsrv\appcmd.exe add app /site.name:"Default Web Site" /path:/APP1 /physicalPath:C:\inetpub\wwwroot\APP1
 
 設定:
-
 %systemroot%\system32\inetsrv\appcmd.exe set app "Default Web Site/APP1" /applicationPool:".NET v4.5"
