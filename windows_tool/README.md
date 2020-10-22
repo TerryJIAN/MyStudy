@@ -27,10 +27,16 @@ RD 刪除目錄，命令參數： rd /?
 
 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\啟動
 
------IIS 指令創建站點-----
+-----IIS CMD指令創建站點-----
 
 加入:
-%systemroot%\system32\inetsrv\appcmd.exe add app /site.name:"Default Web Site" /path:/APP1 /physicalPath:C:\inetpub\wwwroot\APP1
+C:\Windows\system32\inetsrv\appcmd.exe add app /site.name:"Default Web Site" /path:/APP1 /physicalPath:C:\inetpub\wwwroot\APP1
 
 設定:
-%systemroot%\system32\inetsrv\appcmd.exe set app "Default Web Site/APP1" /applicationPool:".NET v4.5"
+C:\Windows\system32\inetsrv\appcmd.exe set app "Default Web Site/APP1" /applicationPool:".NET v4.5"
+
+查看website 
+C:\Windows\System32\inetsrv\appcmd.exe list app
+
+查看apppool 
+C:\Windows\System32\inetsrv\appcmd.exe list apppool
