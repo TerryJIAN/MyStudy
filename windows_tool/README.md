@@ -40,3 +40,7 @@ C:\Windows\System32\inetsrv\appcmd.exe list app
 
 查看apppool 
 C:\Windows\System32\inetsrv\appcmd.exe list apppool
+
+也可改用
+%systemroot%\system32\inetsrv\appcmd.exe
+ || %windir%\system32\inetsrv\appcmd.exe
