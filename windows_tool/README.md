@@ -23,9 +23,11 @@ RD 刪除目錄，命令參數： rd /?
 
 很簡單、很方便、處理方式很透明～贊......有被鎖檔的朋友不妨試試看這個方法。
 
---------開機執行路徑--------
+--------開機執行方法--------
 
-C:\ProgramData\Microsoft\Windows\Start Menu\Programs\啟動
+1.可以使用"工作排程器" 記得勾選最高管理員執行(在下方 仔細找)!!
+
+2.放置在該目錄下=C:\ProgramData\Microsoft\Windows\Start Menu\Programs\啟動
 
 -----IIS CMD指令創建站點-----
 
