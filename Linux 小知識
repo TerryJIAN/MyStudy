@@ -10,26 +10,27 @@ crontab -r 刪除目前使用者執行指令
 --------------------------------------
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+def VideoCapture (ch,rtsp):#執行續執行區
+    cap= cv2.VideoCapture(rtsp)
+    while True:
+        _dir = dir+ch+'/'+datetime.now().strftime("%Y%m%d_%H")
+        if not os.path.exists(_dir):
+            os.makedirs(_dir) #建立多層檔案
+            print ("mkdir:%s"%(_dir))
+        time.sleep(1)
 
-import time  # 引入time
-import os
-f = open("/home/senaoadmin01/terry/listfile.txt", "r")
-
-#print (f.read().splitlines())
-
-lines = f.read().splitlines()  #去除/n 回傳list
-#print lines
-for line in lines:
-        line=line.split(',') #以','切割list
-        dir='/home/senaoadmin01/terry/'+line[0]
-        if not os.path.exists(dir):
-            os.mkdir(dir)
-        else:
-            pass
-
-        print line[0]
-        print line[1]
-f.close()
+if __name__ == '__main__':
+    try:
+        for line in lines:
+            line=line.split(',')#line[0] ch line[1] RTSP URL
+            print ("創建(%s)執行續" % (line[0]))
+            t = threading.Thread(target = VideoCapture,args=(line[0],line[1]))
+            t.daemon=True#子線程跟主程式一起存活
+            t.start()
+        while True:#thread中斷寫法，主程式需一直運行當觸發例外主程式跳出，子執行緒一起結束
+            time.sleep(1)
+    except (KeyboardInterrupt, SystemExit):
+        print ('\n! Received keyboard interrupt, quitting threads.\n')
 
 --------------------------------------
 #* * * * * /usr/bin/python /home/senaoadmin01/terry/task.py
