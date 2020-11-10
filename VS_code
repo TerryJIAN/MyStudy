@@ -7,8 +7,8 @@ sftp.json設定  運行不能有// 註解因為格式是json
     "password": "登入密碼",
     "protocol": "sftp",
     "remotePath": "想要下載資料夾的路徑",
-    "privateKeyPath": "ssh key路徑 .ppk", //如果沒有填null
-    "passphrase": "ssh key密碼", //如果沒有填null
+    "privateKeyPath": "ssh key路徑 .ppk", //如果沒有就不要加入
+    "passphrase": "ssh key密碼", //如果沒有就不要加入
     "uploadOnSave": true, //存檔就同步
     "syncMode": "update",
     "ignore": [
