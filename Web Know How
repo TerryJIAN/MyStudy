@@ -1,1 +1,21 @@
 紀錄前端開發筆記
+
+CSS 套籤用法
+1 .one.two {} : 表示class要同時擁有 class:"one two"
+2 .one .two {} : 表示class階層關係 先找.one再去渲染.two
+    <div class="one box">
+        <div class="two">one 裡面的 two</div>
+    </div>
+3. .one , .two {} : 表示class有其一即可炫染 class:"one three"或是class:"two four"
+
+以下為範例
+.input { 
+  /* input 基礎風格渲染*/
+}
+/*:focus 鍵盤聚焦的樣式 :hover 滑鼠滑過的樣式  : ->觸發事件 */
+.input:focus,.input:hover { 
+  border-color: blue;
+}
+.input:disabled, .input.disabled {
+  cursor: not-allowed;
+}
