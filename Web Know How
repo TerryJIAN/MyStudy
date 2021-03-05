@@ -19,3 +19,6 @@ CSS 套籤用法
 .input:disabled, .input.disabled {
   cursor: not-allowed;
 }
+
+CSS 標籤
+cursor: 滑鼠樣式
