@@ -1,0 +1,13 @@
+關閉Hyper-V 開啟VM
+bcdedit /set hypervisorlaunchtype off
+開啟Hyper-V 開啟docker
+bcdedit /set hypervisorlaunchtype auto
+
+查看資訊 
+systeminfo
+
+
+Docker forever in “Docker is starting..”
+
+wsl --unregister docker-desktop
+wsl --unregister docker-desktop-data
