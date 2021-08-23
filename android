@@ -1,0 +1,10 @@
+1.下載Source code，載入Android studio
+2.修改build.gradle的
+  targetSdkVersion = 29
+  //google 最低要求：29
+  //huangcy
+  versionCode = 25
+  // next might be 1.3.7
+  versionName = "1.3.8"
+ 3.release build aab(google play 新的檔案)
+  需要準備.
