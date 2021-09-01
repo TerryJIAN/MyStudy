@@ -1,9 +1,21 @@
+可設定ini_set( , )內容參考
+https://www.php.net/manual/en/ini.list.php
+  PHP_INI_PERDIR：指令可以在php.ini、httpd.conf或.htaccess檔案中修改
+
+  PHP_INI_SYSTEM：指令可以在php.ini 和 httpd.conf 檔案中修改
+
+  PHP_INI_USER：指令可以在使用者指令碼中修改
+
+  PHP_INI_ALL：指令可以在任何地方修改
+
 php.ini
   memory_limit = 1024M
 
   upload_max_filesize = 1024M
 
   post_max_size = 1024M
+  
+  max_input_time = 300
 
   max_execution_time = 300
 
