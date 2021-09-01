@@ -1,4 +1,4 @@
-設定時間 set_time_limit
+設定函式運行最常時間 set_time_limit
 
 可設定ini_set( , )內容參考
 https://www.php.net/manual/en/ini.list.php
