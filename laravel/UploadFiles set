@@ -1,3 +1,5 @@
+設定時間 set_time_limit
+
 可設定ini_set( , )內容參考
 https://www.php.net/manual/en/ini.list.php
   PHP_INI_PERDIR：指令可以在php.ini、httpd.conf或.htaccess檔案中修改
