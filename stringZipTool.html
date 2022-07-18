@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zip & Unzip</title>
+  </head>
+  <body>
+    <div>Input:</div>
+    <div><textarea id="inputText" cols="100" rows="30"></textarea></div>
+    <div>
+      <button onclick="zip.call(this)">Zip</button>
+      <button onclick="unzip.call(this)">Unzip</button>
+    </div>
+	<div>Output:</div>
+	<div><textarea id="outputText" cols="100" rows="30"></textarea></div>
+  </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script>
+    function zip() {
+	
+		const textEncoder = new TextEncoder();
+        const byteArray = textEncoder.encode(document.getElementById("inputText").value);
+		
+        const zippedContent = pako.gzip(byteArray);
+		const b64encoded = btoa(String.fromCharCode.apply(null, zippedContent));
+
+		document.getElementById("outputText").value = (b64encoded);
+    }
+    function unzip() {
+		const gezipedData = atob(document.getElementById("inputText").value)
+		const gzipedDataArray = Uint8Array.from(gezipedData, c => c.charCodeAt(0))
+		const ungzipedData = pako.ungzip(gzipedDataArray);
+
+		document.getElementById("outputText").value = new TextDecoder().decode(ungzipedData);
+        }
+		
+		
+</script>
