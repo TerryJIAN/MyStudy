@@ -11,3 +11,48 @@ Docker forever in “Docker is starting..”
 
 wsl --unregister docker-desktop
 wsl --unregister docker-desktop-data
+
+
+asp.net core run docker
+/*****************************************docker-compose.yml*****************************************/
+version: '3.4'
+
+services:
+  devicemanager:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    image: ${DOCKER_REGISTRY-}devicemanager
+    ports:
+      - '9901:80'
+      - '9902:443'
+    volumes:
+      - ./docker/IVSLog/DeviceManager:/IVSLog/DeviceManager
+      - ./docker/Config/DeviceManager:/app/Config
+      - ${USERPROFILE}\.aspnet\https:/https:ro
+  nginx:
+    image: 'nginx:latest'
+    ports:
+      - '9527:80'
+      - '9528:443'
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+/*****************************************docker-compose.yml*****************************************/
+1.遇到docker-compose.yml 無法直接啟動 Kestrel憑證問題
+https://learn.microsoft.com/en-us/aspnet/core/security/docker-compose-https?view=aspnetcore-6.0
+
+產生憑證
+Windows  HOST : dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <password here>
+linux HOST : dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p <password here>
+dotnet dev-certs https --trust
+
+.yml environment 寫入containers中Kestrel的環境參數
+- ASPNETCORE_Kestrel__Certificates__Default__Password=password
+- ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx  <-Windows containers
+- ASPNETCORE_Kestrel__Certificates__Default__Path=C:\https\aspnetapp.pfx <-Linux containers
+.yml volumes
+- ${USERPROFILE}\.aspnet\https:/https:ro  <- Windows HOST : Linux containers
+- ~/.aspnet/https:/https:ro  <- Linux HOST : Linux containers
+- ${USERPROFILE}\.aspnet\https:C:\https:ro <- Windows HOST : Windows containers
